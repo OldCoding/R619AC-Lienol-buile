@@ -83,7 +83,7 @@ jobs:
         sed '10 iuci\ set\ system.@system[0].hostname=G-Dock' -i package/default-settings/files/zzz-default-settings
         sed -i "/firewall\.user/d" package/default-settings/files/zzz-default-settings
         sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
-        sed -i '$a src-git lean https://github.com/coolsnowwolf/lede' feeds.conf.default
+        sed -i '$a svn checkout https://github.com/coolsnowwolf/lede/trunk/package/lean' feeds.conf.default
         sed -i '$a src-git helloworld https://github.com/fw876/helloworld' feeds.conf.default
 
     - name: Update feeds
