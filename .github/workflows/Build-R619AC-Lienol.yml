@@ -74,6 +74,7 @@ jobs:
         # git clone -b lede https://github.com/pymumu/luci-app-smartdns
         git clone https://github.com/xiaorouji/openwrt-passwall
         git clone https://github.com/destan19/OpenAppFilter.git
+        git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic
 
     - name: FilePatch
       run: |
@@ -82,6 +83,7 @@ jobs:
         sed '10 iuci\ set\ system.@system[0].hostname=G-Dock' -i package/default-settings/files/zzz-default-settings
         sed -i "/firewall\.user/d" package/default-settings/files/zzz-default-settings
         sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
+        sed -i '$a src-git lean https://github.com/coolsnowwolf/lede' feeds.conf.default
         sed -i '$a src-git helloworld https://github.com/fw876/helloworld' feeds.conf.default
 
     - name: Update feeds
@@ -128,20 +130,9 @@ jobs:
         # 编译竞斗云固件:
         cat >> .config <<EOF
         CONFIG_TARGET_ipq40xx=y
-        CONFIG_TARGET_ipq40xx_DEVICE_p2w_r619ac-128m=y
+        CONFIG_TARGET_ipq40xx_generic=y
+        CONFIG_TARGET_ipq40xx_generic_DEVICE_p2w_r619ac-128m=y
         EOF
-
-        # USB2.0支持:
-        # cat >> .config <<EOF
-        # CONFIG_PACKAGE_kmod-usb-core=y
-        # CONFIG_PACKAGE_kmod-usb-dwc3=y
-        # CONFIG_PACKAGE_kmod-usb-dwc3-qcom=y
-        # CONFIG_PACKAGE_kmod-usb-storage=y
-        # CONFIG_PACKAGE_kmod-usb-storage-extras=y
-        # CONFIG_PACKAGE_kmod-usb-storage-uas=y
-        # CONFIG_PACKAGE_kmod-usb-xhci-hcd=y
-        # CONFIG_PACKAGE_kmod-usb3=y
-        # EOF
 
         # IPv6支持:
         cat >> .config <<EOF
@@ -160,21 +151,17 @@ jobs:
         CONFIG_PACKAGE_luci-app-firewall=y
         CONFIG_PACKAGE_luci-app-jd-dailybonus=y
         CONFIG_PACKAGE_luci-app-adbyby-plus=y
-        CONFIG_PACKAGE_luci-app-ssr-plus=y
         CONFIG_PACKAGE_luci-app-serverchan=y
-        CONFIG_PACKAGE_smartdns=y
         CONFIG_PACKAGE_luci-app-smartdns=y
         CONFIG_PACKAGE_luci-app-oaf=y
         CONFIG_PACKAGE_luci-app-samba=y
         CONFIG_PACKAGE_luci-app-ttyd=y
-        CONFIG_PACKAGE_luci-app-webadmin=y
         CONFIG_PACKAGE_luci-app-wol=y
         CONFIG_PACKAGE_luci-app-wrtbwmon=y
         CONFIG_PACKAGE_luci-app-ramfree=y
         CONFIG_PACKAGE_luci-app-frpc=y
-        CONFIG_PACKAGE_luci-app-unblockmusic=y
-        CONFIG_PACKAGE_luci-app-unblockmusic_INCLUDE_UnblockNeteaseMusic_Go=y
-        CONFIG_PACKAGE_luci-app-unblockmusic_INCLUDE_UnblockNeteaseMusic_NodeJS=y
+        CONFIG_PACKAGE_luci-app-webadmin=y
+        CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
         CONFIG_PACKAGE_luci-app-usb-printer=y
         CONFIG_PACKAGE_luci-app-upnp=y
         CONFIG_PACKAGE_luci-app-vsftpd=y
