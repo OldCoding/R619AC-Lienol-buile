@@ -65,7 +65,7 @@ jobs:
       run: |
         ls
         cd package
-        git clone -b packages-19.07 https://github.com/liuran001/openwrt-packages
+        git clone -b packages https://github.com/liuran001/openwrt-packages
         svn checkout https://github.com/coolsnowwolf/lede/trunk/package/lean
         git clone https://$SCKEY:x-oauth-basic@github.com/OldCoding/luci-app-speedlimit.git
         git clone https://github.com/tty228/luci-app-serverchan
