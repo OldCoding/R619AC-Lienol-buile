@@ -75,7 +75,7 @@ jobs:
 
     - name: FilePatch
       run: |
-        curl -L https://destan19.github.io/assets/oaf/open_feature/feature-06-18.cfg -o package/openwrt-packages/OpenAppFilter/open-app-filter/files/feature.cfg
+        curl -L https://destan19.github.io/assets/oaf/open_feature/feature-06-18.cfg -o package/OpenAppFilter/open-app-filter/files/feature.cfg
         sed -i "s/OpenWrt SNAPSHOT /Wing build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" package/default-settings/files/zzz-default-settings
         sed '10 iuci\ set\ system.@system[0].hostname=G-Dock' -i package/default-settings/files/zzz-default-settings
         sed -i "/firewall\.user/d" package/default-settings/files/zzz-default-settings
