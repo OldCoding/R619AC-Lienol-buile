@@ -127,6 +127,18 @@ jobs:
         CONFIG_TARGET_ipq40xx_generic=y
         CONFIG_TARGET_ipq40xx_generic_DEVICE_p2w_r619ac-128m=y
         EOF
+        
+        USB2.0支持:
+        cat >> .config <<EOF
+        CONFIG_PACKAGE_kmod-usb-core=y
+        CONFIG_PACKAGE_kmod-usb-dwc3=y
+        CONFIG_PACKAGE_kmod-usb-dwc3-qcom=y
+        CONFIG_PACKAGE_kmod-usb-storage=y
+        CONFIG_PACKAGE_kmod-usb-storage-extras=y
+        CONFIG_PACKAGE_kmod-usb-storage-uas=y
+        CONFIG_PACKAGE_kmod-usb-xhci-hcd=y
+        CONFIG_PACKAGE_kmod-usb3=y
+        EOF
 
         # IPv6支持:
         cat >> .config <<EOF
@@ -140,6 +152,7 @@ jobs:
         # LuCI插件选择:
         cat >> .config <<EOF
         CONFIG_PACKAGE_luci-app-autoreboot=y
+        CONFIG_PACKAGE_luci-app-diskman=y
         CONFIG_PACKAGE_luci-app-aliyundrive-webdav=y
         CONFIG_PACKAGE_luci-app-ssr-plus=y
         CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
