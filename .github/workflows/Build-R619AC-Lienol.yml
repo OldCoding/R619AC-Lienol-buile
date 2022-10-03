@@ -193,6 +193,8 @@ jobs:
         cat >> .config <<EOF
         CONFIG_DEFAULT_coremark=y
         CONFIG_PACKAGE_e2fsprogs=y
+        CONFIG_PACKAGE_automount=y
+        CONFIG_PACKAGE_block-mount=y
         # CONFIG_PACKAGE_luci-app-unblockmusic is not set
         EOF
 
