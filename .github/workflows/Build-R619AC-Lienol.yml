@@ -68,7 +68,7 @@ jobs:
         cd package
         git clone https://github.com/kenzok8/small-package.git
         git clone https://$SCKEY:x-oauth-basic@github.com/OldCoding/luci-app-speedlimit.git
-        git clone https://github.com/OldCoding/luci-app-adguardhome.git
+        git clone -b master https://github.com/OldCoding/luci-app-adguardhome.git
 
 
 
