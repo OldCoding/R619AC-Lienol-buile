@@ -22,8 +22,8 @@ on:
     types: [started]
     
 env:
-  REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/Lienol/openwrt
+  REPO_BRANCH: 21.02
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
@@ -86,7 +86,7 @@ jobs:
         sed '10 iuci\ set\ system.@system[0].hostname=G-Dock' -i package/default-settings/files/zzz-default-settings
         sed -i "/firewall\.user/d" package/default-settings/files/zzz-default-settings
         sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
-        rm -rf ./package/small-package/luci-app-adguardhome
+        # rm -rf ./package/small-package/luci-app-adguardhome
 
     - name: Update feeds
       run: ./scripts/feeds update -a && ./scripts/feeds install -a
