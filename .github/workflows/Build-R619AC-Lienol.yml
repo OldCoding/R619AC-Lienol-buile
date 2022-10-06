@@ -66,16 +66,17 @@ jobs:
       run: |
         ls
         cd package
+        git clone https://github.com/kenzok8/small-package.git
         git clone https://github.com/tty228/luci-app-serverchan
         git clone https://github.com/OldCoding/luci-app-adguardhome
-        git clone -b master https://$SCKEY:x-oauth-basic@github.com/OldCoding/luci-app-speedlimit.git
-        git clone https://github.com/pymumu/luci-app-smartdns
-        svn export https://github.com/immortalwrt/packages/trunk/net/smartdns
-        svn export https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav
-        svn export https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav
-        git clone https://github.com/xiaorouji/openwrt-passwall
-        svn export https://github.com/kiddin9/openwrt-packages/trunk/luci-app-diskman
-        svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2
+        # git clone -b master https://$SCKEY:x-oauth-basic@github.com/OldCoding/luci-app-speedlimit.git
+        # git clone https://github.com/pymumu/luci-app-smartdns
+        # svn export https://github.com/immortalwrt/packages/trunk/net/smartdns
+        # svn export https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav
+        # svn export https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav
+        # git clone https://github.com/xiaorouji/openwrt-passwall
+        # svn export https://github.com/kiddin9/openwrt-packages/trunk/luci-app-diskman
+        # svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2
 
 
 
