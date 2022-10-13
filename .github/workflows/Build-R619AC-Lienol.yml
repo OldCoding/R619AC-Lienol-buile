@@ -82,8 +82,9 @@ jobs:
         svn export https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav
         svn export https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav
         git clone https://github.com/xiaorouji/openwrt-passwall
+        git clone -b luci https://github.com/xiaorouji/openwrt-passwall passwall1 && mv -n passwall1/luci-app-passwall  ./; rm -rf passwall1
         svn export https://github.com/kiddin9/openwrt-packages/trunk/luci-app-diskman
-        svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2
+        # svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2
 
 
 
@@ -192,7 +193,7 @@ jobs:
         CONFIG_PACKAGE_luci-app-vsftpd=y
         CONFIG_PACKAGE_luci-app-vlmcsd=y
         CONFIG_PACKAGE_luci-app-zerotier=y
-        CONFIG_PACKAGE_luci-app-passwall2=y
+        CONFIG_PACKAGE_luci-app-passwall=y
         CONFIG_PACKAGE_luci-app-cpufreq=y
         CONFIG_PACKAGE_luci-app-adguardhome=y
         CONFIG_PACKAGE_luci-app-transmission=y
