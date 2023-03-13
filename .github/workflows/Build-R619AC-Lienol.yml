@@ -91,6 +91,7 @@ jobs:
 
     - name: FilePatch
       run: |
+        cp -f patch/rc.local openwrt/package/base-files/files/etc/rc.local
         cd openwrt
         sed -i "s/SNAPSHOT/Wing build $(TZ=UTC-8 date "+%Y.%m.%d")/g" package/default-settings/files/zzz-default-settings
         sed '10 iuci\ set\ system.@system[0].hostname=G-Dock' -i package/default-settings/files/zzz-default-settings
