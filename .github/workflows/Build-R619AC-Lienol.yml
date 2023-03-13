@@ -78,7 +78,7 @@ jobs:
         # git clone -b master https://$SCKEY:x-oauth-basic@github.com/OldCoding/luci-app-speedlimit.git
         # git clone https://github.com/pymumu/luci-app-smartdns
         # svn export https://github.com/immortalwrt/packages/trunk/net/smartdns
-        svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
+        #svn export https://github.com/vernesong/OpenClash/trunk/luci-app-openclash
         #svn export https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav
         #svn export https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav
         git clone https://github.com/sbwml/luci-app-alist
