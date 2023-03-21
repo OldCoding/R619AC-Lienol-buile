@@ -60,6 +60,10 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        useVersionInfo=$(git show -s --date=short --format="Author: %an<br/>date: %cd<br/>commit: %s<br/>commit hash: %H<br/>")
+        VER=$(grep -E "='R.+" ./package/lean/default-settings/files/zzz-default-settings | cut -f2 -d"'")
+        echo "useVersionInfo=$useVersionInfo" >> $GITHUB_ENV
+        echo "VER=$VER" >> $GITHUB_ENV
         
     - name: Cache
       uses: klever1988/cachewrtbuild@main
@@ -263,6 +267,12 @@ jobs:
       if: (!cancelled())
       run: df -hT
 
+    - name: Read sha256
+      run: |
+        cd openwrt/bin/targets/*/*
+        sha256=$(cat sha256sums | sed ':a;N;$!ba;s/\n/<br>/g')
+        echo "sha256=$sha256" >> $GITHUB_ENV
+
     - name: Upload bin directory
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
@@ -312,7 +322,14 @@ jobs:
         touch release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
-        echo "::set-output name=status::success"
+        echo "- 版本号：${{ env.VER }}<br>" >>  release.txt
+        echo "- 默认IP：192.168.10.1<br>" >>  release.txt
+        echo "- 默认密码：password<br>" >>  release.txt
+        echo "- 当前使用版本:【编译前的最后一次[➦主源码](https://github.com/coolsnowwolf/lede)更新记录】<br>" >>  release.txt
+        echo "${{ env.useVersionInfo }}<br>" >>  release.txt
+        echo "`sha256sums`<br>" >>  release.txt
+        echo "${{ env.sha256 }}<br>" >>  release.txt
+        ec  ho "::set-output name=status::success"
 
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
