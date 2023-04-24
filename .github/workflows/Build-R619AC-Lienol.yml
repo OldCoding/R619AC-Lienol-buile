@@ -186,7 +186,6 @@ jobs:
         CONFIG_PACKAGE_luci-app-ramfree=y
         CONFIG_PACKAGE_luci-app-frpc=y
         CONFIG_PACKAGE_luci-app-webadmin=y
-        CONFIG_PACKAGE_luci-app-usb-printer=y
         CONFIG_PACKAGE_luci-app-upnp=y
         CONFIG_PACKAGE_luci-app-vsftpd=y
         CONFIG_PACKAGE_luci-app-vlmcsd=y
@@ -197,7 +196,9 @@ jobs:
 
         # LuCI主题:
         cat >> .config <<EOF
-        CONFIG_PACKAGE_luci-theme-design=y
+        CONFIG_PACKAGE_luci-theme-argon=y
+        CONFIG_PACKAGE_luci-theme-bootstrap=y
+        CONFIG_PACKAGE_luci-theme-material=y
         EOF
 
         # 常用软件包:
