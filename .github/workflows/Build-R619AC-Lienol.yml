@@ -23,7 +23,7 @@ on:
     
 env:
   REPO_URL: https://github.com/Lienol/openwrt
-  REPO_BRANCH: 21.02
+  REPO_BRANCH: 22.03
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -149,7 +149,7 @@ jobs:
         CONFIG_TARGET_ipq40xx=y
         CONFIG_TARGET_ipq40xx_generic=y
         CONFIG_TARGET_ipq40xx_generic_DEVICE_p2w_r619ac-128m=y
-        CONFIG_LINUX_5_15=y
+        CONFIG_LINUX_5_10=y
         EOF
 
         # IPv6支持:
@@ -201,7 +201,6 @@ jobs:
         cat >> .config <<EOF
         CONFIG_DEFAULT_coremark=y
         CONFIG_PACKAGE_e2fsprogs=y
-        CONFIG_PACKAGE_automount=y
         CONFIG_PACKAGE_block-mount=y
         # CONFIG_PACKAGE_luci-app-unblockmusic is not set
         EOF
