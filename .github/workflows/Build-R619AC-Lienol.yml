@@ -92,6 +92,7 @@ jobs:
     - name: FilePatch
       run: |
         cp -f patch/rc.local openwrt/package/base-files/files/etc/rc.local
+        mkdir openwrt/target/linux/ipq40xx/base-files/etc/hotplug.d/net
         cp -f patch/21_adjust_network openwrt/target/linux/ipq40xx/base-files/etc/hotplug.d/net/21_adjust_network
         cp -f patch/adjust_network openwrt/target/linux/ipq40xx/base-files/etc/init.d/adjust_network
         cp -f patch/adjust_network.sh openwrt/target/linux/ipq40xx/base-files/lib/adjust_network.sh
