@@ -97,9 +97,9 @@ jobs:
         cp -f patch/adjust_network openwrt/target/linux/ipq40xx/base-files/etc/init.d/adjust_network
         cp -f patch/adjust_network.sh openwrt/target/linux/ipq40xx/base-files/lib/adjust_network.sh
         cd openwrt
-        sed -i "s/SNAPSHOT/Wing build $(TZ=UTC-8 date "+%Y.%m.%d")/g" package/default-settings/files/zzz-default-settings
-        sed '10 iuci\ set\ system.@system[0].hostname=G-Dock' -i package/default-settings/files/zzz-default-settings
-        sed -i "/firewall\.user/d" package/default-settings/files/zzz-default-settings
+        #sed -i "s/SNAPSHOT/Wing build $(TZ=UTC-8 date "+%Y.%m.%d")/g" package/default-settings/files/zzz-default-settings
+        #sed '10 iuci\ set\ system.@system[0].hostname=G-Dock' -i package/default-settings/files/zzz-default-settings
+        #sed -i "/firewall\.user/d" package/default-settings/files/zzz-default-settings
         sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
         # rm -rf ./package/small-package/luci-app-adguardhome
 
@@ -167,28 +167,25 @@ jobs:
         EOF
 
         # LuCI插件选择:
-        cat >> .config <<EOF
-        CONFIG_PACKAGE_luci-app-autoreboot=y
-        CONFIG_PACKAGE_luci-app-ddns=y
-        CONFIG_PACKAGE_luci-app-smartdns=y
-        CONFIG_PACKAGE_luci-app-ramfree=y
-        CONFIG_PACKAGE_luci-app-webadmin=y
-        CONFIG_PACKAGE_luci-app-upnp=y
-        CONFIG_PACKAGE_luci-app-zerotier=y
-        EOF
+        #cat >> .config <<EOF
+        #CONFIG_PACKAGE_luci-app-autoreboot=y
+        #CONFIG_PACKAGE_luci-app-ddns=y
+        #CONFIG_PACKAGE_luci-app-smartdns=y
+        #CONFIG_PACKAGE_luci-app-ramfree=y
+        #CONFIG_PACKAGE_luci-app-webadmin=y
+        #CONFIG_PACKAGE_luci-app-upnp=y
+        #CONFIG_PACKAGE_luci-app-zerotier=y
+        #EOF
 
         # LuCI主题:
         cat >> .config <<EOF
         CONFIG_PACKAGE_luci-theme-argon-2102=y
-        CONFIG_PACKAGE_luci-theme-bootstrap=y
         EOF
 
         # 常用软件包:
         cat >> .config <<EOF
         CONFIG_PACKAGE_irqbalance=y
-        CONFIG_PACKAGE_firewall4=y
         CONFIG_PACKAGE_e2fsprogs=y
-        CONFIG_PACKAGE_block-mount=y
         EOF
 
         # 取消编译VMware镜像以及镜像填充 (不要删除被缩进的注释符号):
