@@ -170,28 +170,16 @@ jobs:
         # LuCI插件选择:
         cat >> .config <<EOF
         CONFIG_PACKAGE_luci-app-autoreboot=y
-        CONFIG_PACKAGE_luci-app-diskman=y
-        CONFIG_PACKAGE_luci-app-alist=y
         CONFIG_PACKAGE_luci-app-ddns=y
-        CONFIG_PACKAGE_luci-app-filetransfer=y
-        CONFIG_PACKAGE_luci-app-nlbwmon=y
         CONFIG_PACKAGE_luci-app-firewall=y
         CONFIG_PACKAGE_luci-app-pushbot=y
         CONFIG_PACKAGE_luci-app-smartdns=y
         CONFIG_PACKAGE_luci-app-samba4=y
-        CONFIG_PACKAGE_luci-app-hd-idle=y
         CONFIG_PACKAGE_luci-app-ttyd=y
-        CONFIG_PACKAGE_luci-app-wol=y
-        CONFIG_PACKAGE_luci-app-wrtbwmon=y
         CONFIG_PACKAGE_luci-app-ramfree=y
-        CONFIG_PACKAGE_luci-app-frpc=y
         CONFIG_PACKAGE_luci-app-webadmin=y
         CONFIG_PACKAGE_luci-app-upnp=y
-        CONFIG_PACKAGE_luci-app-vsftpd=y
-        CONFIG_PACKAGE_luci-app-vlmcsd=y
         CONFIG_PACKAGE_luci-app-zerotier=y
-        CONFIG_PACKAGE_luci-app-passwall=y
-        CONFIG_PACKAGE_luci-app-adguardhome=y
         EOF
 
         # LuCI主题:
@@ -204,6 +192,7 @@ jobs:
         # 常用软件包:
         cat >> .config <<EOF
         CONFIG_DEFAULT_coremark=y
+        CONFIG_PACKAGE_irqbalance=y
         CONFIG_PACKAGE_e2fsprogs=y
         CONFIG_PACKAGE_block-mount=y
         # CONFIG_PACKAGE_luci-app-unblockmusic is not set
