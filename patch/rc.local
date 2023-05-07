@@ -1,4 +1,5 @@
 # Put your custom commands here that should be executed once
 # the system init finished. By default this file does nothing.
 echo 'usb2' | tee /sys/bus/usb/drivers/usb/unbind
+echo a >/sys/class/net/pppoe-wan/queues/rx-0/rps_cpus
 exit 0
