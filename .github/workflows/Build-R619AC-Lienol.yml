@@ -23,7 +23,7 @@ on:
     
 env:
   REPO_URL: https://github.com/Lienol/openwrt
-  REPO_BRANCH: 22.03
+  REPO_BRANCH: master
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -167,15 +167,20 @@ jobs:
         EOF
 
         # LuCI插件选择:
-        #cat >> .config <<EOF
-        #CONFIG_PACKAGE_luci-app-autoreboot=y
-        #CONFIG_PACKAGE_luci-app-ddns=y
-        #CONFIG_PACKAGE_luci-app-smartdns=y
-        #CONFIG_PACKAGE_luci-app-ramfree=y
-        #CONFIG_PACKAGE_luci-app-webadmin=y
-        #CONFIG_PACKAGE_luci-app-upnp=y
-        #CONFIG_PACKAGE_luci-app-zerotier=y
-        #EOF
+        cat >> .config <<EOF
+        CONFIG_PACKAGE_luci-app-autoreboot=y
+        CONFIG_PACKAGE_luci-app-ddns=y
+        CONFIG_PACKAGE_luci-app-firewall=y
+        CONFIG_PACKAGE_luci-app-ramfree=y
+        CONFIG_PACKAGE_luci-app-smartdns=y
+        CONFIG_PACKAGE_luci-app-sqm=y
+        CONFIG_PACKAGE_luci-app-turboacc
+        CONFIG_PACKAGE_luci-app-upnp=y
+        CONFIG_PACKAGE_luci-app-vlmcsd=y
+        CONFIG_PACKAGE_luci-app-wol=y
+        CONFIG_PACKAGE_luci-app-webadmin=y
+        CONFIG_PACKAGE_luci-app-zerotier=y
+        EOF
 
         # LuCI主题:
         cat >> .config <<EOF
@@ -185,7 +190,10 @@ jobs:
         # 常用软件包:
         cat >> .config <<EOF
         CONFIG_PACKAGE_irqbalance=y
+        CONFIG_PACKAGE_autocore-arm=y
         CONFIG_PACKAGE_e2fsprogs=y
+        CONFIG_PACKAGE_firewall4=y
+        CONFIG_PACKAGE_miniupnpd-nftables=y
         EOF
 
         # 取消编译VMware镜像以及镜像填充 (不要删除被缩进的注释符号):
