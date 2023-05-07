@@ -72,7 +72,7 @@ jobs:
       run: |
         ls
         cd openwrt/package
-        # git clone https://github.com/NueXini/NueXini_Packages
+        git clone https://github.com/NueXini/NueXini_Packages
         # git clone -b js https://github.com/gngpp/luci-theme-design
         # git clone https://github.com/tty228/luci-app-serverchan
         # git clone https://github.com/kongfl888/luci-app-adguardhome
@@ -155,7 +155,6 @@ jobs:
         CONFIG_TARGET_ipq40xx=y
         CONFIG_TARGET_ipq40xx_generic=y
         CONFIG_TARGET_ipq40xx_generic_DEVICE_p2w_r619ac-128m=y
-        CONFIG_LINUX_5_10=y
         EOF
 
         # IPv6支持:
@@ -171,7 +170,6 @@ jobs:
         cat >> .config <<EOF
         CONFIG_PACKAGE_luci-app-autoreboot=y
         CONFIG_PACKAGE_luci-app-ddns=y
-        CONFIG_PACKAGE_luci-app-firewall=y
         CONFIG_PACKAGE_luci-app-smartdns=y
         CONFIG_PACKAGE_luci-app-ramfree=y
         CONFIG_PACKAGE_luci-app-webadmin=y
@@ -181,17 +179,16 @@ jobs:
 
         # LuCI主题:
         cat >> .config <<EOF
-        CONFIG_PACKAGE_luci-theme-argon=y
+        CONFIG_PACKAGE_luci-theme-argon-2102=y
         CONFIG_PACKAGE_luci-theme-bootstrap=y
-        CONFIG_PACKAGE_luci-theme-material=y
         EOF
 
         # 常用软件包:
         cat >> .config <<EOF
         CONFIG_PACKAGE_irqbalance=y
+        CONFIG_PACKAGE_firewall4=y
         CONFIG_PACKAGE_e2fsprogs=y
         CONFIG_PACKAGE_block-mount=y
-        # CONFIG_PACKAGE_luci-app-unblockmusic is not set
         EOF
 
         # 取消编译VMware镜像以及镜像填充 (不要删除被缩进的注释符号):
@@ -206,6 +203,7 @@ jobs:
 
         sed -i 's/^[ \t]*//g' ./.config
         make defconfig
+        cp ./.config ./Lienol-config.bak
 
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
@@ -235,7 +233,10 @@ jobs:
 
     - name: Check space usage
       if: (!cancelled())
-      run: df -hT
+      run: |
+        cd openwrt/
+        mv ./config.bak $GITHUB_WORKSPACE/openwrt/bin/targets/*/*
+        df -hT
 
     - name: Upload bin directory
       uses: actions/upload-artifact@main
