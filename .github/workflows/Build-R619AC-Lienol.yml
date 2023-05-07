@@ -235,7 +235,7 @@ jobs:
       if: (!cancelled())
       run: |
         cd openwrt/
-        mv ./config.bak $GITHUB_WORKSPACE/openwrt/bin/targets/*/*
+        mv ./Lienol-config.bak $GITHUB_WORKSPACE/openwrt/bin/targets/*/*
         df -hT
 
     - name: Upload bin directory
