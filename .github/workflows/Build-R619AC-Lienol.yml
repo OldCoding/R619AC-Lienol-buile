@@ -98,10 +98,9 @@ jobs:
         cp -f patch/adjust_network.sh openwrt/target/linux/ipq40xx/base-files/lib/adjust_network.sh
         cd openwrt
         #sed -i "s/SNAPSHOT/Wing build $(TZ=UTC-8 date "+%Y.%m.%d")/g" package/default-settings/files/zzz-default-settings
-        #sed '10 iuci\ set\ system.@system[0].hostname=G-Dock' -i package/default-settings/files/zzz-default-settings
-        #sed -i "/firewall\.user/d" package/default-settings/files/zzz-default-settings
+        sed '10 uci\ set\ system.@system[0].hostname=G-Dock' -i package/default-settings/files/zzz-default-settings
+        sed '37 uci\ set\ network.globals.packet_steering=\'1\'' -i package/default-settings/files/zzz-default-settings
         sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
-        # rm -rf ./package/small-package/luci-app-adguardhome
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a && ./scripts/feeds install -a
